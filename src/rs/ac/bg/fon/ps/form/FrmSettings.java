@@ -29,6 +29,7 @@ public class FrmSettings extends javax.swing.JDialog {
         
         try {
             initComponents();
+            setResizable(false);
             setLocationRelativeTo(null);
             Properties properties = new Properties();
             properties.load(new FileInputStream("config/dbconfig.properties"));
@@ -63,6 +64,7 @@ public class FrmSettings extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("TrackData v1 - Settings");
 
         jLabel1.setText("URL:");
 

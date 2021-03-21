@@ -378,12 +378,11 @@ public class Controller {
         frmMain.addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent e) {
-                System.out.println("usloje");
                 frmMain.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 try {
                     if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?\n Server will shut down automatically.", "TrackData exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         Controller.getInstance().stopServer();
-                        frmMain.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                     }
                 } catch (Exception ex) {

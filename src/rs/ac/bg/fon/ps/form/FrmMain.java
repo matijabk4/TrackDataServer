@@ -29,19 +29,26 @@ public class FrmMain extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         btnStop.setEnabled(false);
+        setTitle("TrackData v1 - Server");
+        setResizable(false);
         addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent e) {
                 setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                try {
-                    if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?\n Server will shut down automatically.", "TrackData exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                        Controller.getInstance().stopServer();
-                        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                if (!btnStop.isEnabled()) {
+                    if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "TrackData exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     }
-                } catch (Exception ex) {
-                    Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    try {
+                        if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?\n Server will shut down automatically.", "TrackData exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            Controller.getInstance().stopServer();
+                            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-
             }
         });
     }
@@ -108,6 +115,11 @@ public class FrmMain extends javax.swing.JFrame {
         jMenu2.setText("About");
 
         jmiSoftware.setText("Software");
+        jmiSoftware.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSoftwareActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmiSoftware);
 
         jMenuBar1.add(jMenu2);
@@ -163,6 +175,10 @@ public class FrmMain extends javax.swing.JFrame {
         lblStatus.setText("Server stopped!");
         lblStatus.setForeground(Color.red);
     }//GEN-LAST:event_btnStopActionPerformed
+
+    private void jmiSoftwareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSoftwareActionPerformed
+        new FrmAbout(this, false).setVisible(true);
+    }//GEN-LAST:event_jmiSoftwareActionPerformed
 
     /**
      * @param args the command line arguments
