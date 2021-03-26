@@ -5,7 +5,6 @@
  */
 package rs.ac.bg.fon.ps.controller;
 
-import com.sun.java.accessibility.util.AWTEventMonitor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -21,11 +20,8 @@ import rs.ac.bg.fon.ps.domain.Rider;
 import rs.ac.bg.fon.ps.domain.User;
 import rs.ac.bg.fon.ps.form.FrmMain;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
-import rs.ac.bg.fon.ps.operation.rider.DeleteRider;
-import rs.ac.bg.fon.ps.operation.rider.DeleteTeam;
 import rs.ac.bg.fon.ps.operation.rider.SaveRider;
 import rs.ac.bg.fon.ps.operation.rider.SaveTeam;
-import rs.ac.bg.fon.ps.operation.rider.ShowAllRiders;
 import rs.ac.bg.fon.ps.repository.Repository;
 import rs.ac.bg.fon.ps.repository.db.DBRepository;
 import rs.ac.bg.fon.ps.repository.db.impl.RepositoryDBGeneric;
@@ -359,7 +355,7 @@ public class Controller {
             try {
                 processRequests.logout();
             } catch (Exception ex) {
-                Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         st.stopServer();
@@ -391,6 +387,20 @@ public class Controller {
 
             }
         });
+    }
+
+    public void deleteRace(Race race) throws Exception{
+       ((DBRepository) repositoryRace).connect();
+        try {
+            repositoryRace.delete(race);
+            ((DBRepository) repositoryRace).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ((DBRepository) repositoryRace).rollback();
+            throw e;
+        } finally {
+            //((DBRepository) repositoryRider).disconnect();
+        }
     }
 
 }

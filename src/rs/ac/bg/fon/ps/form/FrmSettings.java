@@ -126,7 +126,6 @@ public class FrmSettings extends javax.swing.JDialog {
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream("config/dbconfig.properties"));
-            
             properties.setProperty("url", txtUrl.getText().trim());
             properties.setProperty("username", txtUsername.getText().trim());
             properties.setProperty("password", txtPassword.getPassword().toString().trim());

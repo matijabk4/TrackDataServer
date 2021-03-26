@@ -119,6 +119,11 @@ public class ProcessRequests extends Thread {
                         case LOGOUT_ALL:
                             
                             break;
+                        case DELETE_RACE:
+                            Race raceDelete = (Race) request.getArgument();
+                            Controller.getInstance().deleteRace(raceDelete);
+                            
+                            break;
                     }
 
                 } catch (Exception e) {

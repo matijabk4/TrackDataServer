@@ -116,8 +116,23 @@ public class RepositoryDBRace implements DBRepository<Race> {
     }
 
     @Override
-    public void delete(Race param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Race r) throws Exception {
+        try {
+            Connection connection = DBConnectionFactory.getInstance().getConnection();
+             String sql = "DELETE FROM race_item where id = "+r.getId();
+            System.out.println(sql);
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            sql = "DELETE FROM race WHERE id=" + r.getId();
+            System.out.println(sql);
+            
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            statement.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception("Delete race DB error: \n" + ex.getMessage());
+        }
     }
 
     @Override
