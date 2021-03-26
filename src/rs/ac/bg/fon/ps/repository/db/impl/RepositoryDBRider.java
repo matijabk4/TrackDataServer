@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,7 +71,7 @@ public class RepositoryDBRider implements DBRepository<Rider> {
             rider.setID(Long.parseLong(String.valueOf(id)));
            
             
-            sql = "insert into rider values (?,?,?,?,?,?)";
+            sql = "insert into rider (id, firstname, surname, nationality, motorcyclemake, racingnumber, created_on) values (?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setLong(1, id);
@@ -79,6 +80,7 @@ public class RepositoryDBRider implements DBRepository<Rider> {
             ps.setString(4, rider.getNationality());
             ps.setString(5, rider.getMotorcycle().toString());
             ps.setInt(6, rider.getRacingNum());
+            ps.setDate(7, new java.sql.Date(new Date().getTime()));
             ps.executeUpdate();
             ps.close();
         } catch (Exception ex) {
@@ -95,7 +97,8 @@ public class RepositoryDBRider implements DBRepository<Rider> {
                     + "surname='" + r.getSurname() + "', "
                     + "nationality='" + r.getNationality() + "',"
                     + "motorcyclemake='" + r.getMotorcycle() + "',"
-                    + "racingnumber=" + r.getRacingNum() + " "
+                    + "racingnumber=" + r.getRacingNum() + ", "
+                    +"updated_on='"+new java.sql.Timestamp(new java.util.Date().getTime())+"' "
                     + "WHERE id=" + r.getID();
             System.out.println(sql);
             Connection connection = DBConnectionFactory.getInstance().getConnection();

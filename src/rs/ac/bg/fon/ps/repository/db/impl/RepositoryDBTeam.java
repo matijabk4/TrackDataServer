@@ -83,7 +83,8 @@ public class RepositoryDBTeam implements DBRepository<RacingTeam> {
                     + "budget='" + r.getBudget() + "', "
                     + "name='" + r.getName() + "',"
                     + "generalmanager='" + r.getGeneralManager() + "',"
-                    + "headquarters='" + r.getHeadquarters() + "' "
+                    + "headquarters='" + r.getHeadquarters() + "', "
+                    +"updated_on='"+new java.sql.Timestamp(new java.util.Date().getTime())+"' "
                     + "WHERE id=" + r.getId();
             System.out.println(sql);
             Connection connection = DBConnectionFactory.getInstance().getConnection();
