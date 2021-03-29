@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.ps.operation.rider;
+package rs.ac.bg.fon.ps.operation.race;
 
 import java.util.List;
+import rs.ac.bg.fon.ps.domain.Race;
 import rs.ac.bg.fon.ps.domain.Rider;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
@@ -13,21 +14,24 @@ import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
  *
  * @author Matija
  */
-public class ShowAllRiders extends AbstractGenericOperation {
+public class ShowAllRaces extends AbstractGenericOperation{
 
-    private List<Rider> riders;
+    List<Race> races;
 
+    public List<Race> getRaces() {
+        return races;
+    }
+
+    
     @Override
     protected void preconditions(Object param) throws Exception {
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        riders = repository.getAll((Rider) param);
-
+       races = repository.getAll((Race) param);
+        
+        
     }
-
-    public List<Rider> getRiders() {
-        return riders;
-    }
+    
 }

@@ -20,8 +20,10 @@ import rs.ac.bg.fon.ps.domain.Rider;
 import rs.ac.bg.fon.ps.domain.User;
 import rs.ac.bg.fon.ps.form.FrmMain;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.operation.race.ShowAllRaces;
 import rs.ac.bg.fon.ps.operation.rider.SaveRider;
 import rs.ac.bg.fon.ps.operation.rider.SaveTeam;
+import rs.ac.bg.fon.ps.operation.rider.ShowAllRiders;
 import rs.ac.bg.fon.ps.repository.Repository;
 import rs.ac.bg.fon.ps.repository.db.DBRepository;
 import rs.ac.bg.fon.ps.repository.db.impl.RepositoryDBGeneric;
@@ -120,7 +122,7 @@ public class Controller {
         return riders;
         /*AbstractGenericOperation operation = new ShowAllRiders();
         operation.execute(new Rider());
-        return riders;*/
+        return ((ShowAllRiders) operation).getRiders();*/
     }
 
     public void deleteRider(Rider r) throws Exception {
@@ -251,6 +253,9 @@ public class Controller {
             //((DBRepository) repositoryRider).disconnect();
         }
         return races;
+         /*AbstractGenericOperation operation = new ShowAllRaces();
+        operation.execute(new Race());
+        return ((ShowAllRaces) operation).getRaces();*/
     }
 
     public List<RaceItem> getRaceItems(int raceId) throws Exception {

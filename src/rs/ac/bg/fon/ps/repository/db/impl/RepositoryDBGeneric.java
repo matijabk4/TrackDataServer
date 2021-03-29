@@ -71,16 +71,14 @@ public class RepositoryDBGeneric implements DBRepository<GenericEntity> {
     @Override
     public void delete(GenericEntity entity) throws Exception {
         try {
-            System.out.println("OVO SE IZVRSILO\n");
-             Connection connection = DBConnectionFactory.getInstance().getConnection();
+            Connection connection = DBConnectionFactory.getInstance().getConnection();
             StringBuilder sb = new StringBuilder();
             sb.append("DELETE FROM ")
                     .append(entity.getTableName())
                     .append(" WHERE ").append(entity.getColumnNameForDelete())
                     .append(" =  ")
                     .append(entity.getIDForDelete());
-                    
-           
+
             String query = sb.toString();
             System.out.println(query);
             Statement statement = connection.createStatement();
@@ -106,13 +104,13 @@ public class RepositoryDBGeneric implements DBRepository<GenericEntity> {
             sb.append("SELECT * FROM ")
                     .append(entity.getTableName());
             String query = sb.toString();
-            System.out.println(query);
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 entity.setValues(rs);
                 list.add(entity);
-                //System.out.println(entity.toString());
+                
+                System.out.println(entity.toString());
             }
             rs.close();
             statement.close();
