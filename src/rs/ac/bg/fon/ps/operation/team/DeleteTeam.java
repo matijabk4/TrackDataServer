@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.ps.operation.rider;
+package rs.ac.bg.fon.ps.operation.team;
 
+import rs.ac.bg.fon.ps.operation.rider.*;
 import rs.ac.bg.fon.ps.domain.RacingTeam;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 

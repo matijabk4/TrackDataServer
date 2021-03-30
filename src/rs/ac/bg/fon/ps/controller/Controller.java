@@ -22,8 +22,8 @@ import rs.ac.bg.fon.ps.form.FrmMain;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 import rs.ac.bg.fon.ps.operation.race.ShowAllRaces;
 import rs.ac.bg.fon.ps.operation.rider.SaveRider;
-import rs.ac.bg.fon.ps.operation.rider.SaveTeam;
 import rs.ac.bg.fon.ps.operation.rider.ShowAllRiders;
+import rs.ac.bg.fon.ps.operation.team.SaveTeam;
 import rs.ac.bg.fon.ps.repository.Repository;
 import rs.ac.bg.fon.ps.repository.db.DBRepository;
 import rs.ac.bg.fon.ps.repository.db.impl.RepositoryDBGeneric;
@@ -331,7 +331,7 @@ public class Controller {
             r.setRace(race);
             ((DBRepository) repositoryRaceItem).delete(r);
             ((DBRepository) repositoryRaceItem).commit();
-            return;
+            //return;
         }
         try {
             for (RaceItem r1 : race.getItems()) {

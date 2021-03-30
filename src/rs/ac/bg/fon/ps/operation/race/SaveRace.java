@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rs.ac.bg.fon.ps.operation.rider;
+package rs.ac.bg.fon.ps.operation.race;
 
-import rs.ac.bg.fon.ps.domain.RacingTeam;
+import rs.ac.bg.fon.ps.domain.Race;
 import rs.ac.bg.fon.ps.domain.Rider;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
@@ -13,18 +13,18 @@ import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
  *
  * @author Matija
  */
-public class SaveTeam extends AbstractGenericOperation {
+public class SaveRace extends AbstractGenericOperation {
 
     @Override
     protected void preconditions(Object param) throws Exception {
-         if (param == null || !(param instanceof RacingTeam)) {
-            throw new Exception("Invalid team data!");
+        if (param == null || !(param instanceof Race)) {
+            throw new Exception("Invalid race data!");
         }
     }
 
     @Override
     protected void executeOperation(Object param) throws Exception {
-        repository.add((RacingTeam) param);
+        repository.add((Race) param);
     }
-    
+
 }

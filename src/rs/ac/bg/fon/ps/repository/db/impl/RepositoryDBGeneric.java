@@ -64,8 +64,24 @@ public class RepositoryDBGeneric implements DBRepository<GenericEntity> {
     }
 
     @Override
-    public void edit(GenericEntity param) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void edit(GenericEntity entity) throws Exception {
+        try {
+            Connection connection = DBConnectionFactory.getInstance().getConnection();
+            StringBuilder sb = new StringBuilder();
+            sb.append("UPDATE ")
+                    .append(entity.getTableName())
+                    .append(" SET ").append(entity.getColumnNamesForInsert())
+                    .append(" WHERE ").append(entity.getColumnNameForDelete())
+                    .append(" = ").append(entity.getIDForEdit());
+            String query = sb.toString();
+            
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new Exception(ex.getMessage());
+        }
     }
 
     @Override
@@ -86,7 +102,7 @@ public class RepositoryDBGeneric implements DBRepository<GenericEntity> {
             statement.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new Exception("Delete rider DB error: \n" + ex.getMessage());
+            throw new Exception(ex.getMessage());
         }
     }
 
